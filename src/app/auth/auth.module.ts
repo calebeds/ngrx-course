@@ -11,6 +11,7 @@ import { AuthService } from "./auth.service";
 import { EffectsModule } from "@ngrx/effects";
 import * as fromAuth from "./reducers";
 import { AuthEffects } from "./auth.effects";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { AuthEffects } from "./auth.effects";
   ],
   declarations: [LoginComponent],
   exports: [LoginComponent],
+  providers: [AuthGuard],
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
