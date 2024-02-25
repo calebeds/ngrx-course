@@ -3,7 +3,7 @@ import { Course } from "../model/course";
 import { createReducer, on } from "@ngrx/store";
 import { CourseActions } from "../action-types";
 
-export interface CourseState extends EntityState<Course> {}
+export interface CoursesState extends EntityState<Course> {}
 
 export const adapter = createEntityAdapter<Course>();
 
@@ -15,3 +15,5 @@ export const coursesReducer = createReducer(
     adapter.addMany(action.courses, state)
   )
 );
+
+export const { selectAll } = adapter.getSelectors();
