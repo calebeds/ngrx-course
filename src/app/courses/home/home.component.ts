@@ -4,16 +4,9 @@ import { Observable } from "rxjs";
 import { defaultDialogConfig } from "../shared/default-dialog-config";
 import { EditCourseDialogComponent } from "../edit-course-dialog/edit-course-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
-import { filter, map, shareReplay } from "rxjs/operators";
-import { CoursesHttpService } from "../services/courses-http.service";
-import { Store, select } from "@ngrx/store";
-import { AppState } from "../../reducers";
-import {
-  selectAdvancedCourses,
-  selectBeginnerCourses,
-  selectPromoTotal,
-} from "../courses.selectors";
+
 import { CourseEntityService } from "../services/courses-entity.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "home",
@@ -29,8 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private coursesService: CourseEntityService,
-    private store: Store<AppState>
+    private coursesService: CourseEntityService
   ) {}
 
   ngOnInit() {

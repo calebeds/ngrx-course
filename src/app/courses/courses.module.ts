@@ -31,9 +31,6 @@ import { compareCourses, Course } from "./model/course";
 import { compareLessons, Lesson } from "./model/lesson";
 import { CoursesResolver } from "./services/courses.resover";
 import { EffectsModule } from "@ngrx/effects";
-import { CoursesEffects } from "./courses.effects";
-import { StoreModule } from "@ngrx/store";
-import { coursesReducer } from "./reducers/course.reducers";
 import { CourseEntityService } from "./services/courses-entity.service";
 import { CoursesDataService } from "./services/courses-data.service";
 
@@ -57,6 +54,9 @@ export const coursesRoutes: Routes = [
 const entityMetadata: EntityMetadataMap = {
   Course: {
     sortComparer: compareCourses,
+    entityDispatcherOptions: {
+      optimisticUpdate: true,
+    },
   },
 };
 
@@ -79,8 +79,6 @@ const entityMetadata: EntityMetadataMap = {
     MatMomentDateModule,
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
-    EffectsModule.forFeature([CoursesEffects]),
-    StoreModule.forFeature("courses", coursesReducer),
   ],
   declarations: [
     HomeComponent,
